@@ -1,0 +1,54 @@
+import tkinter as tk
+import tkinter.filedialog
+screen = tk.Tk()
+screen.geometry("500x500")
+screen.title("Memorizer")
+
+def addtext():
+    enteredtext = entry.get()  
+    listbox.insert(tk.END, enteredtext + "\n")  
+    entry.delete(0, tk.END)
+
+def delete():
+    selecteditem = listbox.curselection()
+    print(selecteditem)
+    for i in reversed(selecteditem):
+        listbox.delete(i)
+
+def save():  
+    file = tkinter.filedialog.asksaveasfile()
+    if file is not None:
+        for i in listbox.get(0,tkinter.END):
+          print(i.strip(),file=file) 
+          listbox.delete(0,tkinter.END)
+
+
+def open():
+    opened = tkinter.filedialog.askopenfile()
+    if opened is not None:
+        listbox.delete(0,tkinter.END)
+        items = opened.readlines()
+        for i in items:
+            listbox.insert(tk.END,i)
+open_button = tk.Button(screen, text="OPEN",command=open)
+delete_button = tk.Button(screen, text="DELETE",command=delete)
+save_button = tk.Button(screen, text="SAVE",command=save)
+add_button = tk.Button(screen, text="ADD", command=addtext)
+
+entry = tk.Entry(screen, width=30)
+
+open_button.place(x=0, y=0, width=100, height=30)
+delete_button.place(x=150, y=0, width=100, height=30)
+save_button.place(x=300, y=0, width=100, height=30)
+
+entry.place(x=0, y=50, width=300, height=30)
+add_button.place(x=320, y=50, width=100, height=30)
+
+listbox = tk.Listbox(screen)
+
+for i in range(1,31):
+    listbox.insert(tk.END,"item "+str(i))
+listbox.config(selectmode=tk.MULTIPLE)
+listbox.place(x=0, y=100, width=450, height=300)
+
+screen.mainloop()
