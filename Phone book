@@ -1,0 +1,64 @@
+import tkinter as tk
+import tkinter.messagebox 
+screen = tk.Tk()
+screen.geometry("500x500")
+screen.title("Phone Book")
+openbutton = tk.Button(screen,text="Open")
+myaddressbook = {}
+name = tk.Label(screen,text="Name",font="Arial 15 bold")
+addressbook = tk.Label(screen,text="My addressbook",font="Arial 15 bold")
+nameentry = tk.Entry()
+address = tk.Label(screen,text="Address",font="Arial 15 bold")
+addressentry =  tk.Entry()
+mobile = tk.Label(screen,text="Mobile",font="Arial 15 bold")
+mobileentry =  tk.Entry()
+email  = tk.Label(screen,text="Email",font="Arial 15 bold")
+emailentry =  tk.Entry()
+birthday  = tk.Label(screen,text="Birthday",font="Arial 15 bold")
+birthdayentry = tk.Entry()
+result = tk.Listbox(screen)
+def open():
+    pass
+def edit():
+    pass
+def delete():
+    pass
+def update():
+    global myaddressbook
+    n = nameentry.get()
+    if n == "":
+        tkinter.messagebox.showinfo("","Name cannot be empty!")
+    a = addressentry.get()
+    b = birthdayentry.get()
+    m = mobileentry.get()
+    e = emailentry.get()
+    myaddressbook[n] = [a,m,e,b]
+    result.insert(tk.END,n)
+def save():
+    pass
+
+
+openbutton = tk.Button(screen,text="Open",command=open)
+editbutton = tk.Button(screen,text="Edit",command=edit)
+deletebutton = tk.Button(screen,text="Delete",command=delete)
+updatebutton = tk.Button(screen,text="Update",command=update)
+savebutton = tk.Button(screen,text="Save",command=save)
+
+name.grid(row=3,column=3)
+nameentry.grid(row=3,column=4)
+address.grid(row=4,column=3)
+addressentry.grid(row=4,column=4)
+mobile.grid(row=5,column=3)
+mobileentry.grid(row=5,column=4)
+email.grid(row=6,column=3)
+emailentry.grid(row=6,column=4)
+birthday.grid(row=7,column=3)
+birthdayentry.grid(row=7,column=4)
+result.grid(row=3,rowspan=5,column=1,columnspan=2)
+openbutton.grid(row=1,column=3)
+editbutton.grid(row=9,column=1)
+deletebutton.grid(row=9,column=2)
+updatebutton.grid(row=9,column=4)
+savebutton.grid(row=10,column=3)
+addressbook.grid(row=1,column=2)
+screen.mainloop()
