@@ -1,0 +1,41 @@
+import tkinter as tk
+from tkinter import ttk
+
+screen = tk.Tk()
+screen.geometry("500x500")
+screen.title("COLOR CHANGER")
+
+selectedcolor = "white"
+screen.configure(background=selectedcolor)
+
+label1 = tk.Label(screen, text="Choose a color for the background", font="Arial 15 bold")
+label1.place(x=150, y=150)
+
+label2 = tk.Label(screen, text="Add a colour", font="Arial 15 bold")
+label2.place(x=150, y=300)
+
+add_color = tk.Entry(screen)
+add_color.place(x=150, y=350)
+
+
+colours = ["Yellow", "Blue", "Red", "Black", "White", "Orange", "Green"]
+options = ttk.Combobox(screen, values=colours)
+options.place(x=150, y=200)
+def addcolor():
+    newcolor = add_color.get().strip() 
+    if newcolor and newcolor not in colours:  
+        colours.append(newcolor)  
+        options['values'] = colours  
+
+button2 = tk.Button(screen, text="Add", command=addcolor)
+button2.place(x=300, y=350)
+
+def changecolor():
+    selectedcolor = options.get()
+    if selectedcolor:
+        screen.configure(background=selectedcolor)
+
+okbutton = tk.Button(screen, text="OK", command=changecolor)
+okbutton.place(x=150, y=250)
+
+screen.mainloop()
