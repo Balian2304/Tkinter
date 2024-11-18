@@ -1,0 +1,21 @@
+import tkinter as tk
+import os
+from gtts import gTTS
+screen = tk.Tk()
+screen.title("Text to speech")
+screen.geometry("500x500")
+def submit():
+    text1 = entry.get()
+    language = "en"
+    sound = gTTS(text=text1,lang=language,slow=False)
+    sound.save("speech.wav")
+    os.system("speech.wav")
+text = tk.Label(screen,text="Text to speech",font="Arial 18 bold")
+entry = tk.Entry(screen)
+submitbutton = tk.Button(screen,text="Submit",command=submit)
+
+text.place(x=175,y=50)
+entry.place(x=140,y=100)
+submitbutton.place(x=200,y=130)
+
+screen.mainloop()
