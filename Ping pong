@@ -1,0 +1,10 @@
+import tkinter as tk
+screen = tk.Tk()
+TITLE = "PING PONG"
+screen.geometry("800x500")
+canvas = tk.Canvas(screen,bg="black",width=800,height=500)
+canvas.grid(row=0,column=0)
+canvas.create_line(400,0,400,500,fill="white",width=4)
+oval = canvas.create_oval(300,250,400,350,outline="white",width=4)
+canvas.move(oval,50,-50)
+screen.mainloop()
