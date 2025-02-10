@@ -8,7 +8,7 @@ canvas.grid(row=0, column=0)
 canvas.create_line(400, 0, 400, 500, fill="white", width=4)
 oval = canvas.create_oval(300, 250, 400, 350, outline="white", width=4)
 canvas.move(oval, 50, -50)
-scoreboard = canvas.create_text(400,50,text="0 VS 0",fill="red",font=("Arial",15,"bold"))
+scoreboard = canvas.create_text(400,50,text="0    0",fill="red",font=("Arial",35,"bold"))
 class Ball():
     def __init__(self):
         self.ball = canvas.create_oval(300, 250, 330, 280, fill="white", width=4)
@@ -27,6 +27,7 @@ class Ball():
             and self.coordinates[1] <= paddle_coords[3]  
         )
     def draw(self):
+        global canvas
         canvas.move(self.ball, self.changex, self.changey)
         self.coordinates = canvas.coords(self.ball)
 
@@ -35,11 +36,11 @@ class Ball():
         if self.coordinates[0]<0:
             self.score2 += 1
             self.changex = 5
-            canvas.configure(scoreboard,text=str(self.score1) + "VS" + str(self.score2))
+            canvas.itemconfigure(scoreboard,text=str(self.score1) + "  " + str(self.score2))
         if self.coordinates[2]>800:
             self.score1 += 1
             self.changex = -5
-            canvas.configure(scoreboard,text=str(self.score1) + "VS" + str(self.score2))
+            canvas.itemconfigure(scoreboard,text=str(self.score1) + "  " + str(self.score2))
         if self.hit_paddle(player1.bar1):
             self.changex = 5
         if self.hit_paddle(player2.bar1):
